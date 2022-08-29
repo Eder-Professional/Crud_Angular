@@ -17,7 +17,7 @@ export class ProductsService {
     return this.httpClient.get<Products[]>(this.API)
     .pipe(
       first(),
-      delay(5000),
+      // delay(5000),
       tap(products => console.log(products))
     );
   }

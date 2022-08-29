@@ -1,7 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { Observable } from 'rxjs';
+import { MatDialog } from '@angular/material/dialog';
+import { Observable, of } from 'rxjs';
+import { catchError } from 'rxjs/operators';
+
 import { Products } from '../models/products';
 import { ProductsService } from '../services/products.service';
+import { ErrorDialogComponent } from '../../shared/components/error-dialog/error-dialog.component';
 
 @Component({
   selector: 'app-produtos',
@@ -13,8 +17,22 @@ export class ProdutosComponent implements OnInit {
   products$: Observable<Products[]>;
   displayedColumns = ['name','description','price','category'];
 
-  constructor(private productsService: ProductsService) {
-    this.products$ = this.productsService.list();
+  constructor(
+    private productsService: ProductsService,
+    public dialog: MatDialog
+    ) {
+    this.products$ = this.productsService.list().pipe(
+      catchError(error => {
+        this.onError('Erro ao carregar produtos')
+        return of([])
+      })
+    );
+  }
+
+  onError(errorMsg: string) {
+    this.dialog.open(ErrorDialogComponent, {
+      data: errorMsg
+    });
   }
 
   ngOnInit(): void {
