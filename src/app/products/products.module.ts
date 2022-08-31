@@ -5,10 +5,12 @@ import { AppMaterialModule } from '../shared/app-material/app-material.module';
 import { SharedModule } from '../shared/shared.module';
 import { ProductsRoutingModule } from './products-routing.module';
 import { ProdutosComponent } from './produtos/produtos.component';
+import { ProductsFormComponent } from './products-form/products-form.component';
 
 @NgModule({
   declarations: [
-    ProdutosComponent
+    ProdutosComponent,
+    ProductsFormComponent
   ],
   imports: [
     CommonModule,

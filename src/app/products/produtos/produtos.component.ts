@@ -6,6 +6,7 @@ import { catchError } from 'rxjs/operators';
 import { Products } from '../models/products';
 import { ProductsService } from '../services/products.service';
 import { ErrorDialogComponent } from '../../shared/components/error-dialog/error-dialog.component';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-produtos',
@@ -15,15 +16,19 @@ import { ErrorDialogComponent } from '../../shared/components/error-dialog/error
 export class ProdutosComponent implements OnInit {
 
   products$: Observable<Products[]>;
-  displayedColumns = ['name','description','price','category'];
+  displayedColumns = ['name','description','price','category', 'actions'];
 
   constructor(
     private productsService: ProductsService,
-    public dialog: MatDialog
+    public dialog: MatDialog,
+    private router: Router,
+    private route: ActivatedRoute
+
     ) {
-    this.products$ = this.productsService.list().pipe(
+    this.products$ = this.productsService.list()
+    .pipe(
       catchError(error => {
-        this.onError('Erro ao carregar produtos')
+        this.onError('Erro ao carregar produtos');
         return of([])
       })
     );
@@ -37,6 +42,18 @@ export class ProdutosComponent implements OnInit {
 
   ngOnInit(): void {
 
+  }
+
+  onAdd(){
+    this.router.navigate(['new'], {relativeTo: this.route});
+  }
+
+  onEdit(){
+    console.log('OnEdit')
+  }
+
+  onDelete(){
+    console.log('OnDelete')
   }
 
 }
