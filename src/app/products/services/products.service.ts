@@ -1,8 +1,8 @@
-import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { Injectable } from '@angular/core';
+import { first, tap } from 'rxjs/operators';
 
 import { Products } from '../models/products';
-import { delay, first, take, tap } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -20,5 +20,9 @@ export class ProductsService {
       // delay(5000),
       tap(products => console.log(products))
     );
+  }
+
+  save(record: Products) {
+    return this.httpClient.post<Products>(this.API, record).pipe(first());
   }
 }
