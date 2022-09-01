@@ -7,10 +7,12 @@ export class CategoryPipe implements PipeTransform {
 
   transform(value: string ): string {
     switch(value) {
-      case 'escritorio' : return 'Description';
-      case 'informatica' : return 'Dns';
+      case 'Escritorio' : return 'folder';
+      case 'escritorio' : return 'folder';
+      case 'Eletronico' : return 'computer';
+      case 'eletronico' : return 'computer';
     }
-    return 'computer';
+    return 'file-check';
   }
 
 }

@@ -16,7 +16,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 export class ProdutosComponent implements OnInit {
 
   products$: Observable<Products[]>;
-  displayedColumns = ['name','description','price','category', 'actions'];
+
 
   constructor(
     private productsService: ProductsService,
@@ -49,10 +49,12 @@ export class ProdutosComponent implements OnInit {
   }
 
   onEdit(){
-    console.log('OnEdit')
+    this.router.navigate(['edit'], {relativeTo: this.route});
+    console.log("Edit")
   }
 
   onDelete(){
+    this.router.navigate(['delete'], {relativeTo: this.route});
     console.log('OnDelete')
   }
 

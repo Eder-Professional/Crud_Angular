@@ -3,7 +3,7 @@
   <mat-toolbar color="primary">Cadastrar Produto</mat-toolbar>
 
   <mat-card-content>
-    <form [formGroup]="form">
+    <form [formGroup]="form" class="min-width">
       <mat-form-field class="full-width">
         <input matInput placeholder="Nome" formControlName="name">
       </mat-form-field>
@@ -20,8 +20,8 @@
         <mat-label>Categoria</mat-label>
         <mat-select formControlName="category">
           <mat-option value="null"> </mat-option>
-          <mat-option value="office">Escritório</mat-option>
-          <mat-option value="eletronic">Eletrônico</mat-option>
+          <mat-option value="Escritorio">Escritório</mat-option>
+          <mat-option value="Eletronico">Eletrônico</mat-option>
         </mat-select>
       </mat-form-field>
     </form>
